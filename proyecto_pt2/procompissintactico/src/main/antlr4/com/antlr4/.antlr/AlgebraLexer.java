@@ -1,4 +1,4 @@
-// Generated from c:/Users/04dan/Dropbox/Mi PC (LAPTOP-35D3RKBD)/Desktop/URL/2025/COMPILADORES/Proyecto-Compiladores-Pt.2/proyecto_pt2/procompissintactico/src/main/antlr4/com/antlr4/Algebra.g4 by ANTLR 4.13.1
+// Generated from c:/Users/Gabriel/Documents/GitHub/Proyecto-Compiladores-Pt.2/proyecto_pt2/procompissintactico/src/main/antlr4/com/antlr4/Algebra.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;

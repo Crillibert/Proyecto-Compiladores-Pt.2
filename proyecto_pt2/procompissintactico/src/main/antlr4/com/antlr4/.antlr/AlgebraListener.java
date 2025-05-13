@@ -17,6 +17,16 @@ public interface AlgebraListener extends ParseTreeListener {
 	 */
 	void exitPrograma(AlgebraParser.ProgramaContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link AlgebraParser#declaracion}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaracion(AlgebraParser.DeclaracionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AlgebraParser#declaracion}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaracion(AlgebraParser.DeclaracionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link AlgebraParser#asignacion}.
 	 * @param ctx the parse tree
 	 */
@@ -36,14 +46,4 @@ public interface AlgebraListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpresion(AlgebraParser.ExpresionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link AlgebraParser#termino}.
-	 * @param ctx the parse tree
-	 */
-	void enterTermino(AlgebraParser.TerminoContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link AlgebraParser#termino}.
-	 * @param ctx the parse tree
-	 */
-	void exitTermino(AlgebraParser.TerminoContext ctx);
 }

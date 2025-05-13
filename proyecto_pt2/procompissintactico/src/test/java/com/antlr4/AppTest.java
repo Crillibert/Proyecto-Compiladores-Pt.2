@@ -1,7 +1,6 @@
 package com.antlr4;
 
 import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 
 /**
