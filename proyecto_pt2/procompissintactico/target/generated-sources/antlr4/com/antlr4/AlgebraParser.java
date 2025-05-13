@@ -17,27 +17,30 @@ public class AlgebraParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, NUMERO=8, ID=9, 
-		ASIGN=10, WS=11;
+		T__0=1, NUMERO_ENTERO=2, NUMERO_REAL=3, ID=4, TIPODDATO=5, OP_LOGICO=6, 
+		OP_RACIONALES=7, OP_ARITMETICO=8, OP_DEC_INC=9, RES_CONTROL=10, RES_CICLOS=11, 
+		RES_FUN=12, LCOR=13, RCOR=14, ASSIGN=15, WS=16;
 	public static final int
-		RULE_programa = 0, RULE_asignacion = 1, RULE_expresion = 2, RULE_termino = 3;
+		RULE_programa = 0, RULE_declaracion = 1, RULE_asignacion = 2, RULE_expresion = 3;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"programa", "asignacion", "expresion", "termino"
+			"programa", "declaracion", "asignacion", "expresion"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "';'", "'+'", "'-'", "'*'", "'/'", "'('", "')'", null, null, "'=>'"
+			null, "';'", null, null, null, null, null, null, null, null, null, null, 
+			null, "'{'", "'}'", "'=>'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, null, null, null, null, null, "NUMERO", "ID", "ASIGN", 
-			"WS"
+			null, null, "NUMERO_ENTERO", "NUMERO_REAL", "ID", "TIPODDATO", "OP_LOGICO", 
+			"OP_RACIONALES", "OP_ARITMETICO", "OP_DEC_INC", "RES_CONTROL", "RES_CICLOS", 
+			"RES_FUN", "LCOR", "RCOR", "ASSIGN", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -92,6 +95,7 @@ public class AlgebraParser extends Parser {
 	}
 
 	public static class ProgramaContext extends ParserRuleContext {
+		public TerminalNode EOF() { return getToken(AlgebraParser.EOF, 0); }
 		public List<AsignacionContext> asignacion() {
 			return getRuleContexts(AsignacionContext.class);
 		}
@@ -103,6 +107,12 @@ public class AlgebraParser extends Parser {
 		}
 		public ExpresionContext expresion(int i) {
 			return getRuleContext(ExpresionContext.class,i);
+		}
+		public List<DeclaracionContext> declaracion() {
+			return getRuleContexts(DeclaracionContext.class);
+		}
+		public DeclaracionContext declaracion(int i) {
+			return getRuleContext(DeclaracionContext.class,i);
 		}
 		public ProgramaContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -125,12 +135,12 @@ public class AlgebraParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(12);
+			setState(13);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__5) | (1L << NUMERO) | (1L << ID))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << NUMERO_ENTERO) | (1L << NUMERO_REAL) | (1L << ID) | (1L << TIPODDATO) | (1L << LCOR))) != 0)) {
 				{
-				setState(10);
+				setState(11);
 				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
 				case 1:
@@ -142,15 +152,73 @@ public class AlgebraParser extends Parser {
 				case 2:
 					{
 					setState(9);
-					expresion();
+					expresion(0);
+					}
+					break;
+				case 3:
+					{
+					setState(10);
+					declaracion();
 					}
 					break;
 				}
 				}
-				setState(14);
+				setState(15);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
+			setState(16);
+			match(EOF);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class DeclaracionContext extends ParserRuleContext {
+		public TerminalNode TIPODDATO() { return getToken(AlgebraParser.TIPODDATO, 0); }
+		public TerminalNode ID() { return getToken(AlgebraParser.ID, 0); }
+		public TerminalNode ASSIGN() { return getToken(AlgebraParser.ASSIGN, 0); }
+		public ExpresionContext expresion() {
+			return getRuleContext(ExpresionContext.class,0);
+		}
+		public DeclaracionContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_declaracion; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof AlgebraListener ) ((AlgebraListener)listener).enterDeclaracion(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof AlgebraListener ) ((AlgebraListener)listener).exitDeclaracion(this);
+		}
+	}
+
+	public final DeclaracionContext declaracion() throws RecognitionException {
+		DeclaracionContext _localctx = new DeclaracionContext(_ctx, getState());
+		enterRule(_localctx, 2, RULE_declaracion);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(18);
+			match(TIPODDATO);
+			setState(19);
+			match(ID);
+			setState(20);
+			match(ASSIGN);
+			setState(21);
+			expresion(0);
+			setState(22);
+			match(T__0);
 			}
 		}
 		catch (RecognitionException re) {
@@ -166,7 +234,7 @@ public class AlgebraParser extends Parser {
 
 	public static class AsignacionContext extends ParserRuleContext {
 		public TerminalNode ID() { return getToken(AlgebraParser.ID, 0); }
-		public TerminalNode ASIGN() { return getToken(AlgebraParser.ASIGN, 0); }
+		public TerminalNode ASSIGN() { return getToken(AlgebraParser.ASSIGN, 0); }
 		public ExpresionContext expresion() {
 			return getRuleContext(ExpresionContext.class,0);
 		}
@@ -186,17 +254,17 @@ public class AlgebraParser extends Parser {
 
 	public final AsignacionContext asignacion() throws RecognitionException {
 		AsignacionContext _localctx = new AsignacionContext(_ctx, getState());
-		enterRule(_localctx, 2, RULE_asignacion);
+		enterRule(_localctx, 4, RULE_asignacion);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(15);
+			setState(24);
 			match(ID);
-			setState(16);
-			match(ASIGN);
-			setState(17);
-			expresion();
-			setState(18);
+			setState(25);
+			match(ASSIGN);
+			setState(26);
+			expresion(0);
+			setState(27);
 			match(T__0);
 			}
 		}
@@ -212,12 +280,18 @@ public class AlgebraParser extends Parser {
 	}
 
 	public static class ExpresionContext extends ParserRuleContext {
-		public List<TerminoContext> termino() {
-			return getRuleContexts(TerminoContext.class);
+		public TerminalNode LCOR() { return getToken(AlgebraParser.LCOR, 0); }
+		public List<ExpresionContext> expresion() {
+			return getRuleContexts(ExpresionContext.class);
 		}
-		public TerminoContext termino(int i) {
-			return getRuleContext(TerminoContext.class,i);
+		public ExpresionContext expresion(int i) {
+			return getRuleContext(ExpresionContext.class,i);
 		}
+		public TerminalNode RCOR() { return getToken(AlgebraParser.RCOR, 0); }
+		public TerminalNode NUMERO_ENTERO() { return getToken(AlgebraParser.NUMERO_ENTERO, 0); }
+		public TerminalNode NUMERO_REAL() { return getToken(AlgebraParser.NUMERO_REAL, 0); }
+		public TerminalNode ID() { return getToken(AlgebraParser.ID, 0); }
+		public TerminalNode OP_ARITMETICO() { return getToken(AlgebraParser.OP_ARITMETICO, 0); }
 		public ExpresionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -233,106 +307,80 @@ public class AlgebraParser extends Parser {
 	}
 
 	public final ExpresionContext expresion() throws RecognitionException {
-		ExpresionContext _localctx = new ExpresionContext(_ctx, getState());
-		enterRule(_localctx, 4, RULE_expresion);
-		int _la;
+		return expresion(0);
+	}
+
+	private ExpresionContext expresion(int _p) throws RecognitionException {
+		ParserRuleContext _parentctx = _ctx;
+		int _parentState = getState();
+		ExpresionContext _localctx = new ExpresionContext(_ctx, _parentState);
+		ExpresionContext _prevctx = _localctx;
+		int _startState = 6;
+		enterRecursionRule(_localctx, 6, RULE_expresion, _p);
 		try {
+			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(20);
-			termino();
-			setState(25);
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__1) | (1L << T__2) | (1L << T__3) | (1L << T__4))) != 0)) {
-				{
-				{
-				setState(21);
-				_la = _input.LA(1);
-				if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__1) | (1L << T__2) | (1L << T__3) | (1L << T__4))) != 0)) ) {
-				_errHandler.recoverInline(this);
-				}
-				else {
-					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-					_errHandler.reportMatch(this);
-					consume();
-				}
-				setState(22);
-				termino();
-				}
-				}
-				setState(27);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-			}
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class TerminoContext extends ParserRuleContext {
-		public TerminalNode NUMERO() { return getToken(AlgebraParser.NUMERO, 0); }
-		public TerminalNode ID() { return getToken(AlgebraParser.ID, 0); }
-		public ExpresionContext expresion() {
-			return getRuleContext(ExpresionContext.class,0);
-		}
-		public TerminoContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_termino; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof AlgebraListener ) ((AlgebraListener)listener).enterTermino(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof AlgebraListener ) ((AlgebraListener)listener).exitTermino(this);
-		}
-	}
-
-	public final TerminoContext termino() throws RecognitionException {
-		TerminoContext _localctx = new TerminoContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_termino);
-		try {
-			setState(34);
+			setState(37);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
-			case NUMERO:
-				enterOuterAlt(_localctx, 1);
+			case LCOR:
 				{
-				setState(28);
-				match(NUMERO);
+				setState(30);
+				match(LCOR);
+				setState(31);
+				expresion(0);
+				setState(32);
+				match(RCOR);
+				}
+				break;
+			case NUMERO_ENTERO:
+				{
+				setState(34);
+				match(NUMERO_ENTERO);
+				}
+				break;
+			case NUMERO_REAL:
+				{
+				setState(35);
+				match(NUMERO_REAL);
 				}
 				break;
 			case ID:
-				enterOuterAlt(_localctx, 2);
 				{
-				setState(29);
+				setState(36);
 				match(ID);
-				}
-				break;
-			case T__5:
-				enterOuterAlt(_localctx, 3);
-				{
-				setState(30);
-				match(T__5);
-				setState(31);
-				expresion();
-				setState(32);
-				match(T__6);
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
+			_ctx.stop = _input.LT(-1);
+			setState(44);
+			_errHandler.sync(this);
+			_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
+			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					if ( _parseListeners!=null ) triggerExitRuleEvent();
+					_prevctx = _localctx;
+					{
+					{
+					_localctx = new ExpresionContext(_parentctx, _parentState);
+					pushNewRecursionContext(_localctx, _startState, RULE_expresion);
+					setState(39);
+					if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
+					setState(40);
+					match(OP_ARITMETICO);
+					setState(41);
+					expresion(5);
+					}
+					} 
+				}
+				setState(46);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
+			}
+			}
 		}
 		catch (RecognitionException re) {
 			_localctx.exception = re;
@@ -340,23 +388,41 @@ public class AlgebraParser extends Parser {
 			_errHandler.recover(this, re);
 		}
 		finally {
-			exitRule();
+			unrollRecursionContexts(_parentctx);
 		}
 		return _localctx;
 	}
 
+	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
+		switch (ruleIndex) {
+		case 3:
+			return expresion_sempred((ExpresionContext)_localctx, predIndex);
+		}
+		return true;
+	}
+	private boolean expresion_sempred(ExpresionContext _localctx, int predIndex) {
+		switch (predIndex) {
+		case 0:
+			return precpred(_ctx, 4);
+		}
+		return true;
+	}
+
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\r\'\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\3\2\3\2\7\2\r\n\2\f\2\16\2\20\13\2\3\3\3\3\3\3\3\3"+
-		"\3\3\3\4\3\4\3\4\7\4\32\n\4\f\4\16\4\35\13\4\3\5\3\5\3\5\3\5\3\5\3\5\5"+
-		"\5%\n\5\3\5\2\2\6\2\4\6\b\2\3\3\2\4\7\2\'\2\16\3\2\2\2\4\21\3\2\2\2\6"+
-		"\26\3\2\2\2\b$\3\2\2\2\n\r\5\4\3\2\13\r\5\6\4\2\f\n\3\2\2\2\f\13\3\2\2"+
-		"\2\r\20\3\2\2\2\16\f\3\2\2\2\16\17\3\2\2\2\17\3\3\2\2\2\20\16\3\2\2\2"+
-		"\21\22\7\13\2\2\22\23\7\f\2\2\23\24\5\6\4\2\24\25\7\3\2\2\25\5\3\2\2\2"+
-		"\26\33\5\b\5\2\27\30\t\2\2\2\30\32\5\b\5\2\31\27\3\2\2\2\32\35\3\2\2\2"+
-		"\33\31\3\2\2\2\33\34\3\2\2\2\34\7\3\2\2\2\35\33\3\2\2\2\36%\7\n\2\2\37"+
-		"%\7\13\2\2 !\7\b\2\2!\"\5\6\4\2\"#\7\t\2\2#%\3\2\2\2$\36\3\2\2\2$\37\3"+
-		"\2\2\2$ \3\2\2\2%\t\3\2\2\2\6\f\16\33$";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\22\62\4\2\t\2\4\3"+
+		"\t\3\4\4\t\4\4\5\t\5\3\2\3\2\3\2\7\2\16\n\2\f\2\16\2\21\13\2\3\2\3\2\3"+
+		"\3\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5"+
+		"\3\5\5\5(\n\5\3\5\3\5\3\5\7\5-\n\5\f\5\16\5\60\13\5\3\5\2\3\b\6\2\4\6"+
+		"\b\2\2\2\64\2\17\3\2\2\2\4\24\3\2\2\2\6\32\3\2\2\2\b\'\3\2\2\2\n\16\5"+
+		"\6\4\2\13\16\5\b\5\2\f\16\5\4\3\2\r\n\3\2\2\2\r\13\3\2\2\2\r\f\3\2\2\2"+
+		"\16\21\3\2\2\2\17\r\3\2\2\2\17\20\3\2\2\2\20\22\3\2\2\2\21\17\3\2\2\2"+
+		"\22\23\7\2\2\3\23\3\3\2\2\2\24\25\7\7\2\2\25\26\7\6\2\2\26\27\7\21\2\2"+
+		"\27\30\5\b\5\2\30\31\7\3\2\2\31\5\3\2\2\2\32\33\7\6\2\2\33\34\7\21\2\2"+
+		"\34\35\5\b\5\2\35\36\7\3\2\2\36\7\3\2\2\2\37 \b\5\1\2 !\7\17\2\2!\"\5"+
+		"\b\5\2\"#\7\20\2\2#(\3\2\2\2$(\7\4\2\2%(\7\5\2\2&(\7\6\2\2\'\37\3\2\2"+
+		"\2\'$\3\2\2\2\'%\3\2\2\2\'&\3\2\2\2(.\3\2\2\2)*\f\6\2\2*+\7\n\2\2+-\5"+
+		"\b\5\7,)\3\2\2\2-\60\3\2\2\2.,\3\2\2\2./\3\2\2\2/\t\3\2\2\2\60.\3\2\2"+
+		"\2\6\r\17\'.";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

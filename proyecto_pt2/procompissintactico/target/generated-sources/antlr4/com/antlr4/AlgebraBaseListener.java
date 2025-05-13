@@ -28,6 +28,18 @@ public class AlgebraBaseListener implements AlgebraListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDeclaracion(AlgebraParser.DeclaracionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaracion(AlgebraParser.DeclaracionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAsignacion(AlgebraParser.AsignacionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -47,18 +59,6 @@ public class AlgebraBaseListener implements AlgebraListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExpresion(AlgebraParser.ExpresionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterTermino(AlgebraParser.TerminoContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitTermino(AlgebraParser.TerminoContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
