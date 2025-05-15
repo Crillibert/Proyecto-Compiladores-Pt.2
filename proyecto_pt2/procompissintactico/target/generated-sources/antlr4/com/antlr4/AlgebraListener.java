@@ -18,25 +18,15 @@ public interface AlgebraListener extends ParseTreeListener {
 	 */
 	void exitPrograma(AlgebraParser.ProgramaContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link AlgebraParser#declaracion}.
+	 * Enter a parse tree produced by {@link AlgebraParser#ecuacion}.
 	 * @param ctx the parse tree
 	 */
-	void enterDeclaracion(AlgebraParser.DeclaracionContext ctx);
+	void enterEcuacion(AlgebraParser.EcuacionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link AlgebraParser#declaracion}.
+	 * Exit a parse tree produced by {@link AlgebraParser#ecuacion}.
 	 * @param ctx the parse tree
 	 */
-	void exitDeclaracion(AlgebraParser.DeclaracionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link AlgebraParser#asignacion}.
-	 * @param ctx the parse tree
-	 */
-	void enterAsignacion(AlgebraParser.AsignacionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link AlgebraParser#asignacion}.
-	 * @param ctx the parse tree
-	 */
-	void exitAsignacion(AlgebraParser.AsignacionContext ctx);
+	void exitEcuacion(AlgebraParser.EcuacionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link AlgebraParser#expresion}.
 	 * @param ctx the parse tree
@@ -47,4 +37,44 @@ public interface AlgebraListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpresion(AlgebraParser.ExpresionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AlgebraParser#atom}.
+	 * @param ctx the parse tree
+	 */
+	void enterAtom(AlgebraParser.AtomContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AlgebraParser#atom}.
+	 * @param ctx the parse tree
+	 */
+	void exitAtom(AlgebraParser.AtomContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AlgebraParser#reales}.
+	 * @param ctx the parse tree
+	 */
+	void enterReales(AlgebraParser.RealesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AlgebraParser#reales}.
+	 * @param ctx the parse tree
+	 */
+	void exitReales(AlgebraParser.RealesContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AlgebraParser#variable}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariable(AlgebraParser.VariableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AlgebraParser#variable}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariable(AlgebraParser.VariableContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AlgebraParser#relop}.
+	 * @param ctx the parse tree
+	 */
+	void enterRelop(AlgebraParser.RelopContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AlgebraParser#relop}.
+	 * @param ctx the parse tree
+	 */
+	void exitRelop(AlgebraParser.RelopContext ctx);
 }
