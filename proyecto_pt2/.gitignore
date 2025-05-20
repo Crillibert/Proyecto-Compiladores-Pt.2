@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+/backend/target/
+/frontend/node_modules/
+
 # testing
 /coverage
 
